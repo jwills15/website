@@ -1,0 +1,100 @@
+<html>
+<head>
+	<title>Cool Boards</title>
+	<script language="javascript">
+		var totalSales = 0;
+		var totalCustomers = 0;
+		var averageSale = 0;
+		
+		function calcPrice(radioGroup, checkBoxBoots, name, license, address, days)
+		{
+			var subTotal = 0;
+			var boardPrice = 0;
+			var bootsAdd = 0;
+			var tax = 0;
+			var total = 0;
+			var outputC;
+			var outputM;
+			if (radioGroup[0].checked)
+			{
+				boardPrice = 20;
+			}
+			else if (radioGroup[1].checked)
+			{
+				boardPrice = 30;
+			}
+			else if (radioGroup[2].checked)
+			{
+				boardPrice = 40;
+			}
+			if (checkBoxBoots.checked)
+			{
+				bootsAdd = 20;
+			}
+			subTotal = boardPrice * days + bootsAdd * days;
+			tax = subTotal * 0.08;
+			total = subTotal + tax;
+			outputC = "Customer Information" + "\n" + "   Name: " + name;
+			outputC = outputC + "\n" + "   License Number: " + license;
+			outputC = outputC + "\n" + "   Address: " + address + "\n" + "\n";
+			outputC = outputC + "Subtotal: $" + subTotal + "\n" + "Tax (8%): $" + tax;
+			outputC = outputC + "\n" + "Total: $" + total + "\n" + "\n";
+			outputC = outputC + "Thank you, " + name + ", for renting from us.";
+			document.frmOutput.txaOutputCustomer.value = outputC;
+			
+			totalSales += subTotal;
+			totalCustomers += 1;
+			averageSale = (totalSales / totalCustomers).toFixed(2);
+			outputM = "Manager Stats" + "\n" + "   Total Customers: " + totalCustomers;
+			outputM = outputM + "\n" + "   Total Sales: $" + totalSales + "\n";
+			outputM = outputM + "   Average Sale: $" + averageSale;
+			document.frmOutput.txaOutputManager.value = outputM
+		}
+	</script>
+</head>
+<body>
+	<h1>Cool Boards</h1>
+	<br>
+	<form name="frmMain">
+		Enter Name
+		<input type="text" name=txtName value=""/>
+		<br><br>
+		Enter Driver's License Number
+		<input type="text" name=txtLicense value=""/>
+		<br><br>
+		Enter Address
+		<input type="text" name=txtAddress value=""/>
+		<br><br>
+		Select Board to Rent
+		<br>
+		<input type="radio" name="radBoard" value="beginner"/>
+		Beginner Board ($20/day)
+		<br>
+		<input type="radio" name="radBoard" value="intermediate"/>
+		Intermediate Board ($30/day)
+		<br>
+		<input type="radio" name="radBoard" value="advanced"/>
+		Advanced Board ($40/day)
+		<br><br>
+		Select Option of Boot Rental
+		<br>
+		<input type="checkbox" name="chkBoots" value="boots"/>
+		Boots (extra $20/day)
+		<br><br>
+		Enter Number of Days (integer)
+		<input type="text" name=txtDays value=""/>
+		<br><br>
+		<input type="button" name="btnCalculate" value="Calculate Price"
+				onclick="calcPrice(frmMain.radBoard, frmMain.chkBoots,
+						frmMain.txtName.value, frmMain.txtLicense.value,
+						frmMain.txtAddress.value, frmMain.txtDays.value)"/>
+	</form>
+	<form name="frmOutput">
+		<textarea name="txaOutputCustomer" id="outputCustomer" rows="10" cols="50">
+		</textarea>
+		<br>
+		<textarea name="txaOutputManager" id="outputManager" rows="5" cols="50">
+		</textarea>
+	</form>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<html>
+<head>
+	<title>
+	Mad Libs
+	</title>
+	<style type="text/css">
+		h1{color: blue;
+			font-weight: bold;
+			font-size: 24px;
+			font-family: verdana;}
+		input{color: red;
+			font-style: italic;
+			font-family: "Comic Sans MS";
+			font-size: 16px;}
+	</style>
+	<script language="javascript">
+		function madLibs(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r)
+			{
+				niceMessage = window.open("","aWindow",
+					"height=450,width=450,left=200,top=150");
+				niceMessage.document.write("<div style='font-size:20px;color:blue;font-family:arial;'>");
+				niceMessage.document.write("The " + a + " man went into the ");
+				niceMessage.document.write(b + " building to " + c + " to a very ");
+				niceMessage.document.write(d + " man. 'Sit down, " + e + ", can I interest you in ");
+				niceMessage.document.write(f + "?'" + "<br><br>" + "The " + g + " man did not like eating " + f + ". ");
+				niceMessage.document.write("'No thanks, I would like a " + h + " and eat it in " + i);
+				niceMessage.document.write(". Can we go for a " + j + "?'" + "<br><br>");
+				niceMessage.document.write("'I would prefer if we did our " + k + " here. ");
+				niceMessage.document.write("As I said, sit down. It's time for you to " + l + " this " + m + ". ");
+				niceMessage.document.write("And we're not " + n + " until we finish.'" + "<br><br>");
+				niceMessage.document.write("'Please don't force me to buy the " + o + ",' said ");
+				niceMessage.document.write(e + " as the door was " + p + " and he was ");
+				niceMessage.document.write(q + " to the " + r + ".")
+				niceMessage.document.write("</div>");
+				
+				/* The (adjective) man went into the (adjective) building to (verb) a very
+				(adjective) man. "Sit down, (name), can I interest you in (food)?"
+				The (adjective) man did not like eating [previous food].
+				"No thanks, I would like a (food) and eat it in (place). Can we go for
+				a (verb)?"
+				"I would prefer if we did our (verb) here. As I said, sit down. It's time
+				for you to (verb) this (noun). And we're not (verb) until we finish."
+				"Please don't force me to buy the (noun)," said [previous name] as the door
+				was (verb) and he was (verb) to the (noun). */
+			}
+	</script>
+</head>
+<body>
+	<h1>Mad Libs</h1>
+	<form name="frmMain">
+	<br><br>
+	<input type="text" name="enter1" value="Enter Adjective"/>
+	<br><br>
+	<input type="text" name="enter2" value="Enter Adjective"/>
+	<br><br>
+	<input type="text" name="enter3" value="Enter Verb"/>
+	<br><br>
+	<input type="text" name="enter4" value="Enter Adjective"/>
+	<br><br>
+	<input type="text" name="enter5" value="Enter Name"/>
+	<br><br>
+	<input type="text" name="enter6" value="Enter Food"/>
+	<br><br>
+	<input type="text" name="enter7" value="Enter Adjective"/>
+	<br><br>
+	<input type="text" name="enter8" value="Enter Food"/>
+	<br><br>
+	<input type="text" name="enter9" value="Enter Place"/>
+	<br><br>
+	<input type="text" name="enter10" value="Enter Verb"/>
+	<br><br>
+	<input type="text" name="enter11" value="Enter Verb"/>
+	<br><br>
+	<input type="text" name="enter12" value="Enter Verb"/>
+	<br><br>
+	<input type="text" name="enter13" value="Enter Noun"/>
+	<br><br>
+	<input type="text" name="enter14" value="Enter Verb"/>
+	<br><br>
+	<input type="text" name="enter15" value="Enter Noun"/>
+	<br><br>
+	<input type="text" name="enter16" value="Enter Verb"/>
+	<br><br>
+	<input type="text" name="enter17" value="Enter Verb"/>
+	<br><br>
+	<input type="text" name="enter18" value="Enter Noun"/>
+	<br><br>
+	<input type="button" name="btnPress" value="Press" 
+		onclick="madLibs(frmMain.enter1.value, frmMain.enter2.value,
+				frmMain.enter3.value, frmMain.enter4.value, frmMain.enter5.value,
+				frmMain.enter6.value, frmMain.enter7.value, frmMain.enter8.value,
+				frmMain.enter9.value, frmMain.enter10.value, frmMain.enter11.value,
+				frmMain.enter12.value, frmMain.enter13.value, frmMain.enter14.value,
+				frmMain.enter15.value, frmMain.enter16.value, frmMain.enter17.value,
+				frmMain.enter18.value)"/>
+
+</body>
+</html>

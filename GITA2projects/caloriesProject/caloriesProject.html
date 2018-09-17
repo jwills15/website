@@ -1,0 +1,51 @@
+<html>
+<head>
+	<title>Calories Burned</title>
+	<script language="javascript">
+		//create function to receive information
+		function calculate(ageInt, weightInt, heartInt, timeDecimal)
+		{
+			if (document.getElementById("male").checked == true)
+			{
+			var caloriesBurned = (((ageInt * 0.2017) - (weightInt * 0.09036) + (heartInt * 0.6309) - 55.0969) * timeDecimal / 4.184).toFixed(0);
+			}
+			else if (document.getElementById("female").checked == true)
+			{
+			var caloriesBurned = (((ageInt * 0.074) - (weightInt * 0.05741) + (heartInt * 0.4472) - 20.4022) * timeDecimal / 4.184).toFixed(0);
+			}
+			document.frmOutput.txaOutput.value = caloriesBurned;
+		}
+	</script>
+</head>
+<body>
+	<h1>Calories Burned</h1>
+	<form name="frmMain">
+		Enter Your Gender
+		<br>
+		<input type="radio" name="radGender" id="male" value="male">Male
+		<br>
+		<input type="radio" name="radGender" id="female" value="female">Female
+		<br><br>
+		Enter Your Age (in integer)
+		<input type="text" name=txtAge value=""/>
+		<br><br>
+		Enter Your Weight (in pounds)
+		<input type="text" name=txtWeight value=""/>
+		<br><br>
+		Enter Your Heart Rate (in integer)
+		<input type="text" name=txtHeart value=""/>
+		<br><br>
+		Enter Your Time Working Out (in minutes)
+		<input type="text" name=txtTime value=""/>
+		<br><br>
+		<input type="button" name=btnCalculate value="Calculate"
+			onclick="calculate(frmMain.txtAge.value, frmMain.txtWeight.value, 
+					frmMain.txtHeart.value, frmMain.txtTime.value)"/>
+	</form>
+	<br><br>
+	<form name="frmOutput">
+		<textarea name="txaOutput" id="outputField" rows="1" cols="10">
+		</textarea>
+	</form>
+</body>
+</html>

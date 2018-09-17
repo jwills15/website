@@ -1,0 +1,148 @@
+<html>
+<head>
+	<title>Craps Game</title>
+	<style type="text/css">
+		#dice1{position: absolute;
+				top: 255px;
+				left: 190px;
+				z-index: 1;
+				background-color: white;}
+		#dice2{position: absolute;
+				top: 255px;
+				left: 265px;
+				z-index: 1;
+				background-color: white;}
+		textarea{font-size: 18px;
+					font-family: arial;
+					color: green;}
+	</style>
+	<script language="javascript">
+		var totalRolls = 0;
+		var userPoint = 0;
+		
+		function roll()
+		{
+			var rolldice1 = Math.floor((Math.random() * 6) + 1);
+			if (rolldice1 == 1)
+			{
+				document.getElementById('1').src = '1.png';
+			}
+			else if (rolldice1 == 2)
+			{
+				document.getElementById('1').src = '2.png';
+			}
+			else if (rolldice1 == 3)
+			{
+				document.getElementById('1').src = '3.png';
+			}
+			else if (rolldice1 == 4)
+			{
+				document.getElementById('1').src = '4.png';
+			}
+			else if (rolldice1 == 5)
+			{
+				document.getElementById('1').src = '5.png';
+			}
+			else if (rolldice1 == 6)
+			{
+				document.getElementById('1').src = '6.png';
+			}
+			
+			var rolldice2 = Math.floor((Math.random() * 6) + 1);
+			if (rolldice2 == 1)
+			{
+				document.getElementById('2').src = '1.png';
+			}
+			else if (rolldice2 == 2)
+			{
+				document.getElementById('2').src = '2.png';
+			}
+			else if (rolldice2 == 3)
+			{
+				document.getElementById('2').src = '3.png';
+			}
+			else if (rolldice2 == 4)
+			{
+				document.getElementById('2').src = '4.png';
+			}
+			else if (rolldice2 == 5)
+			{
+				document.getElementById('2').src = '5.png';
+			}
+			else if (rolldice2 == 6)
+			{
+				document.getElementById('2').src = '6.png';
+			}
+			var score = rolldice1 + rolldice2;
+			
+			if (totalRolls == 0)
+			{
+				if (score == 7)
+				{
+					document.frmOutput.txaOutput.value = "You rolled a 7 and won!"
+							+ "\n" + "Roll again for new game.";
+				}
+				else if (score == 11)
+				{
+					document.frmOutput.txaOutput.value = "You rolled an 11 and won!"
+								+ "\n" + "Roll again for new game.";
+				}
+				else if (score == 2)
+				{
+					document.frmOutput.txaOutput.value = "You rolled a 2 and lost!"
+							+ "\n" + "Roll again for new game.";
+				}
+				else if (score == 3)
+				{
+					document.frmOutput.txaOutput.value = "You rolled a 3 and lost!"
+							+ "\n" + "Roll again for new game.";
+				}
+				else if (score == 12)
+				{
+					document.frmOutput.txaOutput.value = "You rolled a 12 and lost!"
+							+ "\n" + "Roll again for new game.";
+				}
+				else
+				{
+					totalRolls += 1;
+					userPoint = score;
+					document.frmOutput.txaOutput.value = "Your point is " + userPoint + ".";
+				}
+			}
+			else if (totalRolls == 1)
+			{
+				if (score == 7)
+				{
+					document.frmOutput.txaOutput.value = "You rolled a 7 and lost!"
+							+ "\n" + "Roll again for new game.";
+					totalRolls = 0;
+				}
+				else if (score == userPoint)
+				{
+					document.frmOutput.txaOutput.value = "You rolled a " + userPoint +
+							" (your point) and won!" + "\n" + "Roll again for new game.";
+					totalRolls = 0;
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+	<h1>Craps Game</h1>
+	<h3>Joshua Williams<br>Period 1</h3>
+	<img src="crapsBoard.gif" width="564" height="345">
+	<br><br>
+	<input type="button" name=btnRoll value="Roll!" onclick="roll()"/>
+	<div id="dice1">
+		<img id="1" src="" width="75" height="75">
+	</div>
+	<div id="dice2">
+		<img id="2" src="" width="75" height="75">
+	</div>
+	<br><br>
+	<form name="frmOutput">
+		<textarea name="txaOutput" rows="2" cols="50">
+		</textarea>
+	</form>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<html>
+<head>
+	<title>Galaga</title>
+	<link rel="shortcut icon" href="images/shipIcon.ico" />
+	<style type="text/css">
+		@font-face
+		{
+			font-family: emulogic;
+			src: url(fonts/emulogic.woff);
+		}
+	</style>
+</head>
+<body>
+	<center>
+		<div>
+			<h1>Galaga</h1>
+			<h3>Joshua Williams</h3>
+			<!-- Images -->
+				
+				<!-- Ship -->
+				<img id="ship" src="images/ship.png" alt="Ship" hidden>
+				<img id="bulletShip" src="images/shipBullet.png" alt="Ship Bullet" hidden>
+					<!-- Explode -->
+					<img id="shipExplode1" src="images/shipExplode1.png" hidden>
+					<img id="shipExplode2" src="images/shipExplode2.png" hidden>
+					<img id="shipExplode3" src="images/shipExplode3.png" hidden>
+					<img id="shipExplode4" src="images/shipExplode4.png" hidden>
+					
+				<!-- Interface Items -->
+				<img id="life" src="images/life.png" alt="Life" hidden>
+				<img id="level1" src="images/level1.png" alt="Level 1" hidden>
+				<img id="level5" src="images/level5.png" alt="Level 5" hidden>
+				<img id="level10" src="images/level10.png" alt="Level 10" hidden>
+				<img id="level20" src="images/level20.png" alt="Level 20" hidden>
+				<img id="galagaLogo" src="images/galagaLogo.gif" alt="Ship" hidden>
+				<img id="leftArrow" src="images/leftKey.jpg" alt="Ship" hidden>
+				<img id="rightArrow" src="images/rightKey.jpg" alt="Ship" hidden>
+				<img id="sKey" src="images/sKey.png" alt="Ship" hidden>
+				
+				<!-- Aliens -->
+				<img id="alienBullet" src="images/alienBullet.png" hidden>
+					<!-- Blue/Yellow (1) -->
+					<img id="alien1v1down" src="images/alien1v1down.png" hidden>
+					<img id="alien1v2down" src="images/alien1v2down.png" hidden>
+					<img id="alien1v1up" src="images/alien1v1up.png" hidden>
+					<img id="alien1v2up" src="images/alien1v2up.png" hidden>
+					<!-- Red/White (2) -->
+					<img id="alien2v1down" src="images/alien2v1down.png" hidden>
+					<img id="alien2v2down" src="images/alien2v2down.png" hidden>
+					<img id="alien2v1up" src="images/alien2v1up.png" hidden>
+					<img id="alien2v2up" src="images/alien2v2up.png" hidden>
+					<!-- Green/Purple (3) -->
+					<img id="alien3v1down" src="images/alien3v1down.png" hidden>
+					<img id="alien3v2down" src="images/alien3v2down.png" hidden>
+					<img id="alien3v3down" src="images/alien3v3down.png" hidden>
+					<img id="alien3v4down" src="images/alien3v4down.png" hidden>
+					<img id="alien3v1up" src="images/alien3v1up.png" hidden>
+					<img id="alien3v2up" src="images/alien3v2up.png" hidden>
+					<img id="alien3v3up" src="images/alien3v3up.png" hidden>
+					<img id="alien3v4up" src="images/alien3v4up.png" hidden>
+					<!-- Explode -->
+					<img id="alienExplode1" src="images/alienExplode1.png" hidden>
+					<img id="alienExplode2" src="images/alienExplode2.png" hidden>
+					<img id="alienExplode3" src="images/alienExplode3.png" hidden>
+					<img id="alienExplode4" src="images/alienExplode4.png" hidden>
+					<img id="alienExplode5" src="images/alienExplode5.png" hidden>
+					
+			<!-- /Images -->
+			
+			<!-- Audio -->
+
+			<audio controls id="alien1hit" hidden>
+				<source src="sounds/alien1hit.mp3" type="audio/ogg">
+				Your browser does not support the audio tag.
+			</audio>
+			<audio controls id="alien2hit" hidden>
+				<source src="sounds/alien2hit.mp3" type="audio/ogg">
+			</audio>
+			<audio controls id="alien3hit1" hidden>
+				<source src="sounds/alien3hit1.mp3" type="audio/ogg">
+			</audio>
+			<audio controls id="alien3hit2" hidden>
+				<source src="sounds/alien3hit2.mp3" type="audio/ogg">
+			</audio>
+			<audio controls id="alienFlying" hidden>
+				<source src="sounds/alienFlying.mp3" type="audio/ogg">
+			</audio>
+			<audio controls id="ambience" hidden>
+				<source src="sounds/ambience.mp3" type="audio/ogg">
+			</audio>
+			<audio controls id="creditSound" hidden>
+				<source src="sounds/creditSound.mp3" type="audio/ogg">
+			</audio>
+			<audio controls id="extend" hidden>
+				<source src="sounds/extend.mp3" type="audio/ogg">
+			</audio>
+			<audio controls id="nameEntry1" hidden>
+				<source src="sounds/nameEntry1.mp3" type="audio/ogg">
+			</audio>
+			<audio controls id="nameEntry2-5" hidden>
+				<source src="sounds/alien3hit1.mp3" type="audio/ogg">
+			</audio>
+			<audio controls id="nextLevel" hidden>
+				<source src="sounds/nextLevel.mp3" type="audio/ogg">
+			</audio>
+			<audio controls id="shipExplode" hidden>
+				<source src="sounds/shipExplode.mp3" type="audio/ogg">
+			</audio>
+			<audio controls id="shot" hidden>
+				<source src="sounds/shot.mp3" type="audio/ogg">
+			</audio>
+			<audio controls id="startMusic" hidden>
+				<source src="sounds/startMusic.mp3" type="audio/ogg">
+			</audio>
+			
+			<!-- /Audio -->
+			
+			<canvas id="canvas" width="440" height="500"
+					style="background: url('images/galagaBackground.gif')">
+			This text is displayed if your browser does not support HTML5 Canvas.
+			</canvas>
+		</div>
+	</center>
+	<script src="gameCode.js" type="text/javascript" onload="init()"></script>
+</body>
+</html>

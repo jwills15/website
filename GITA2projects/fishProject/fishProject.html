@@ -1,0 +1,166 @@
+<html>
+<head>
+	<title>Animation</title>
+	<script language="javascript">
+		var hitRight = 0 * 1;
+		var hitLeft = 0 * 1;
+		var hitTop = 0 * 1;
+		var hitBottom = 0 * 1;
+		var moves = 0 * 1;
+		var xCoord = Math.floor(Math.random() * 930) * 1 + 35;
+		var yCoord = Math.floor(Math.random() * 430) * 1 + 35;
+		
+		function drawCircle()
+		{
+			var c = document.getElementById("myCanvas");
+			var ctx = c.getContext("2d");
+			
+			ctx.canvas.width = 1000;
+			ctx.canvas.height = 500;
+			ctx.fillStyle = "#ADD8E6";
+			ctx.fillRect(0,0,innerWidth,innerHeight);
+			
+			//draw the circle
+			if (xChangeDirection == 1)
+			{
+				ctx.fillStyle = "#FFA500";
+				ctx.beginPath();
+				ctx.arc(xCoord, yCoord, 30, 0, Math.PI*2, true);
+				ctx.closePath();
+				ctx.fill();
+				ctx.beginPath();
+				ctx.moveTo(xCoord + 20, yCoord);
+				ctx.lineTo(xCoord + 50, yCoord + 25);
+				ctx.lineTo(xCoord + 50, yCoord - 25);
+				ctx.fill();
+				ctx.fillStyle = "#000000";
+				ctx.beginPath();
+				ctx.arc(xCoord - 15, yCoord - 10, 5, 0, Math.PI*2, true);
+				ctx.closePath();
+				ctx.fill();
+			}
+			else if (xChangeDirection == 0)
+			{
+				ctx.fillStyle = "#FFA500";
+				ctx.beginPath();
+				ctx.arc(xCoord + 20, yCoord, 30, 0, Math.PI*2, true);
+				ctx.closePath();
+				ctx.fill();
+				ctx.beginPath();
+				ctx.moveTo(xCoord, yCoord);
+				ctx.lineTo(xCoord - 30, yCoord + 25);
+				ctx.lineTo(xCoord - 30, yCoord - 25);
+				ctx.fill();
+				ctx.fillStyle = "#000000";
+				ctx.beginPath();
+				ctx.arc(xCoord + 35, yCoord - 10, 5, 0, Math.PI*2, true);
+				ctx.closePath();
+				ctx.fill();
+			}
+		}
+		
+		var xChangeDirection = Math.floor(Math.random() * 2) * 1;
+		var yChangeDirection = Math.floor(Math.random() * 2) * 1;
+		var changeTimer = 0*1;
+		
+		function Move()
+		{
+			moves += 1;
+			
+			changeTimer += 1;
+			if (changeTimer == 15)
+			{
+				xChangeDirection = Math.floor(Math.random() * 2) * 1;
+				yChangeDirection = Math.floor(Math.random() * 2) * 1;
+				changeTimer = 0;
+			}
+			
+			if (xChangeDirection == 0)
+			{
+				if(xCoord > document.getElementById("myCanvas").width - 50)
+				{
+					hitRight += 1;
+				}
+				else
+				{
+					xCoord += 5;
+				}
+			}
+			else if (xChangeDirection == 1)
+			{
+				if(xCoord < 35)
+				{
+					hitLeft += 1;
+				}
+				else
+				{
+					xCoord -= 5;
+				}
+			}
+			
+			if (yChangeDirection == 0)
+			{
+				if(yCoord > document.getElementById("myCanvas").height - 35)
+				{
+					hitBottom += 1;
+				}
+				else
+				{
+					yCoord += 5;
+				}
+			}
+			else if (yChangeDirection == 1)
+			{
+				if(yCoord < 35)
+				{
+					hitTop += 1;
+				}
+				else
+				{
+					yCoord -= 5;
+				}
+			}
+
+			drawCircle();
+			
+			document.getElementById('lblLeft').innerHTML = ' | Left Hits: ' + hitLeft + " | ";
+			document.getElementById('lblRight').innerHTML = 'Right Hits: ' + hitRight + " | ";
+			document.getElementById('lblTop').innerHTML = 'Top Hits: ' + hitTop + " | ";
+			document.getElementById('lblBottom').innerHTML = 'Bottom Hits: ' + hitBottom + " | ";
+			document.getElementById('lblMoves').innerHTML = 'Moves: ' + moves + " | ";
+		}
+		
+		var onOFF = 0*1;
+		
+		function Timer()
+		{
+			if (onOFF == 0)
+			{
+				onOFF = 1;
+				timer = setInterval("Move()", 25);
+			}
+			else if(onOFF == 1) 
+			{
+				onOFF = 0;
+				clearInterval(timer);
+			}
+		}
+	</script>
+</head>
+<body onload="drawCircle()">
+	<h1>Fish Project</h1>
+	<h3>Joshua Williams, Period 1</h3>
+	<canvas id="myCanvas" width="1000" height="500" 
+			style="border: 1px solid rgb(195,195,195);">
+		Your browser does not support the canvas element.
+	</canvas>
+	<br>
+	<input type="button" name="play" value="Move Circle" onclick="Move()"/>
+	<input type="button" name="auto" value="Automatic" onclick="Timer()"/>
+	<label id="lblLeft"> | Left Hits: 0 | </label>
+	<label id="lblRight">Right Hits: 0 | </label>
+	<label id="lblTop">Top Hits: 0 | </label>
+	<label id="lblBottom">Bottom Hits: 0 | </label>
+	<label id="lblMoves">Moves: 0 |</label>
+</body>
+</html>

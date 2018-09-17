@@ -1,0 +1,120 @@
+<html>
+<head>
+	<title>Animation</title>
+	<script language="javascript">
+		var moveX = 10 * 1;
+		var moveY = 10 * 1;
+		var xCoord = Math.floor(Math.random() * 1000) * 1;
+		var yCoord = Math.floor(Math.random() * 600) * 1;
+		
+		function drawCircle()
+		{
+			var c = document.getElementById("myCanvas");
+			var ctx = c.getContext("2d");
+			
+			ctx.canvas.width = 1000;
+			ctx.canvas.height = 600;
+			ctx.fillStyle = "#000000";
+			ctx.fillRect(0,0,innerWidth,innerHeight);
+			
+			//draw the circle
+			ctx.fillStyle = hexColor;
+			ctx.beginPath();
+			ctx.arc(xCoord, yCoord, 15, 0, Math.PI*2, true);
+			ctx.closePath();
+			ctx.fill();
+		}
+		
+		var colorTimer = 0 * 1;
+		var hexColor = "#888888";
+		
+		function Move()
+		{
+			if(xCoord > document.getElementById("myCanvas").width)
+			{
+				moveX *= -1;
+			}
+			else if(xCoord < 0)
+			{
+				moveX *= -1;
+			}
+			
+			if(yCoord > document.getElementById("myCanvas").height)
+			{
+				moveY *= -1;
+			}
+			else if(yCoord < 0)
+			{
+				moveY *= -1;
+			}
+			
+			xCoord += moveX;
+			yCoord += moveY;
+			
+			colorTimer += 1;
+			
+			if (colorTimer == 20)
+			{
+				colorTimer = 0;
+				
+				// creating a random number between 0 and 255
+				var r = Math.floor(Math.random()*256);
+				var g = Math.floor(Math.random()*256);
+				var b = Math.floor(Math.random()*256);
+	 
+				// going from decimal to hex
+				var hexR = r.toString(16);
+				var hexG = g.toString(16);
+				var hexB = b.toString(16);
+	 
+				// making sure single character values are prepended with a "0"
+				if (hexR.length == 1)
+				{
+					hexR = "0" + hexR;
+				}
+	 
+				if (hexG.length == 1) 
+				{
+					hexG = "0" + hexG;
+				}
+				 
+				if (hexB.length == 1) 
+				{
+					hexB = "0" + hexB;
+				}
+				 
+				// creating the hex value by concatenatening the string values
+				hexColor = "#" + hexR + hexG + hexB;
+			}
+			
+			drawCircle();
+		}
+		
+		var onOFF = 0*1;
+		
+		function Timer()
+		{
+			if (onOFF == 0)
+			{
+				onOFF = 1;
+				timer = setInterval("Move()", 20);
+			}
+			else if(onOFF == 1) 
+			{
+				onOFF = 0;
+				clearInterval(timer);
+			}
+		}
+	</script>
+</head>
+<body onload="drawCircle()">
+	<h1>How to do animation</h1>
+	<canvas id="myCanvas" width="1000" height="600" 
+			style="border: 1px solid rgb(195,195,195);">
+		Your browser does not support the canvas element.
+	</canvas>
+	<br>
+	<input type="button" name="play" value="Move Circle" onclick="Move()"/>
+	<input type="button" name="auto" value="Automatic" onclick="Timer()"/>
+</body>
+</html>

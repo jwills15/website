@@ -1,0 +1,136 @@
+body
+{
+	background-image: url("background.jpg");
+	background-position: center;
+	background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+h1
+{
+	font-family: sans-serif;
+	font-size: 48px;
+	font-weight: bold;
+	color: green;
+	text-shadow: -1px 0 yellow, 0 1px yellow, 1px 0 yellow, 0 -1px yellow;
+}
+
+ul
+{
+    padding: 0;
+	width: 100%;
+    list-style: none;
+	background: #D7DF01;
+	font-family: sans-serif;
+	border-radius: 25px;
+}
+
+ul li
+{
+    display: inline-block;
+    position: relative;
+    line-height: 21px;
+    text-align: left;
+}
+
+ul li a
+{
+    display: block;
+    padding: 16px 30px;
+	color: black;
+	text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+    font-weight: bold;
+	font-size: 22px;
+	transition: all 0.75s;
+}
+
+ul li a:hover
+{
+    color: white;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+	background: green;
+	border-radius: 25px;
+}
+
+ul li ul.dropdown
+{
+    width: 260px; /* Set width of the dropdown */
+    background: transparent;
+    display: none;
+    position: absolute;
+    z-index: 999;
+    left: 0;
+	border-style: solid;
+	background: white;
+	border-radius: 25px;
+}
+
+ul li:hover ul.dropdown
+{
+    display: block;	/* Display the dropdown */
+}
+
+ul li ul.dropdown li
+{
+    display: block;
+}
+
+.container
+{
+	background: #0B610B;
+	width: 90%;
+	color: white;
+	font-size: 20px;
+	line-height: 160%;
+	padding: 5px;
+	border-radius: 25px;
+}
+
+.center
+{
+	float: center;
+	margin: 20px;
+}
+
+.left
+{
+	float: left;
+	margin-left: 15px;
+	text-align: left;
+}
+
+#inlineBlock
+{
+	display: inline-block;
+	padding: 10px;
+	vertical-align: top;
+	border-radius: 25px;
+}
+
+.text
+{
+	max-width: 500px;
+}
+
+.texts
+{
+	padding: 20px;
+}
+
+.links
+{
+	color: black;
+	font-size: 20px;
+	text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+}
+
+#white
+{
+	background: white;
+	margin-top: 20px;
+}
+
+.smaller
+{
+	max-width: 600px;
+}

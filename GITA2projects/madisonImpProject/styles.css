@@ -1,0 +1,115 @@
+/* Desktop, fixed width CSS */
+
+
+/* Reset */
+
+* {
+	margin: 0;
+	padding: 0;   
+}
+
+/**
+ * Color, typography and basic layout
+ * Colors:
+ * - black (background)
+ * - white (body text, rules)
+ * - #DC143C -> red (borders)
+ */
+body {
+	background: black;
+	color: white;
+	font: "Adobe Caslon Pro", Georgia, "Times New Roman", serif;
+}
+
+p {
+  margin: 0.5em 0.25em;
+}
+
+h1 {
+  font-size: 1.75em;
+	border: solid white;
+	border-width: 10px;
+	padding: 0.25em;
+  text-align: center;
+  font-variant: small-caps;
+}
+
+h2 {
+  text-align: center;
+  font-variant: small-caps;
+}
+/*The <dl> tag defines a description list.
+
+The <dl> tag is used in conjunction with <dt> (defines terms/names) 
+and <dd> (describes each term/name).
+
+*/
+dl {
+  margin: 0 0.5em;
+}
+
+dt {
+  font-weight: bold;
+  margin: 0.5em 1em 0.5em 0;
+  border-bottom: 2px dashed #DC143C;
+}
+
+#points ul {
+  list-style-image: url('redDot.jpg');
+  margin: 0.5em 0 1em 0.5em;
+  padding-left: 1em;
+}
+
+#points ul li {
+  margin: 0.5em 1em;
+}
+
+.footer {
+  background-color: white;
+  color: black;
+  text-align: center;
+  /* .1 times the current font */
+  padding: .1em;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 1.25em;
+}
+
+
+/* Structure */
+
+body, .header, .navigation, .footer {
+  width: 1040px;
+}
+
+.header, .navigation, .footer {
+  clear: both;
+}
+
+.column {
+  margin: 10px 10px 0 0;
+}
+
+.header{
+  background:url(images/w.png) no-repeat;
+  height: 200px;
+}
+
+#visit {
+  width: 340px;
+  float: left;
+  border-right: 3px dotted #DC143C;
+  height: 420px;
+}
+
+#points {
+  width: 340px;
+  float: right;
+  border-left: 3px dotted #DC143C;
+  height: 420px;
+}
+
+#main {
+  margin: 10px 260px 0 340px;
+  width: 340px;
+}

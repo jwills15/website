@@ -1,0 +1,445 @@
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>Space Invaders</title>
+	<script type="text/javascript">
+		var canvas;
+		var ctx;
+
+		var dx = 15;
+		var dy = 15;
+
+		var shipx = 379;
+		var shipy = 550;
+
+		var WIDTH = 800;
+		var HEIGHT = 600;
+		//declare coordinates for the bullet
+		var bulletX = 404 * 1;
+		var bulletY = 550 * 1;
+		
+		//coordinates for the alien
+		var alienX = [16 * 1, 86 * 1, 156 * 1, 226 * 1, 296 * 1];
+		var alienY = [16 * 1, 16 * 1, 16 * 1, 16 * 1, 16 * 1];
+		
+		var dxAlien = 10;
+		var dyAlien = 40;
+		
+		var pixels = [5, 5, 5, 5, 5];
+		
+		var explode = [0, 0, 0, 0, 0];
+		
+		//create a switch to turn the bullet timer on and off
+		var fireOn = false;
+		
+		//switch for alien timer
+		var alienMove = [true, true, true];
+		var shipHit = false;
+		var alienAlive = true;
+		
+		var alienSpeed = 400;
+		
+		var alienHits = [0 * 1, 0 * 1, 0 * 1, 0 * 1, 0 * 1];
+
+		init();
+		//window.addEventListener('keydown',doKeyDown,true);
+		
+		//function to draw the ship
+		function ship(x,y) 
+		{
+			ctx.beginPath();
+			ctx.rect(x, y, 52, 16);
+			ctx.closePath();
+			ctx.fill();
+			ctx.beginPath();
+			ctx.rect(x + 4, y - 4, 44, 4);
+			ctx.closePath();
+			ctx.fill();
+			ctx.beginPath();
+			ctx.rect(x + 20, y - 12, 12, 8);
+			ctx.closePath();
+			ctx.fill();
+			ctx.beginPath();
+			ctx.rect(x + 24, y - 16, 4, 4);
+			ctx.closePath();
+			ctx.fill();
+			
+			if (shipHit == true)
+				{
+					ctx.fillStyle = "white";
+					ctx.font = "bold 36px sans-serif";
+					ctx.textAlign = "center";
+					ctx.fillText("Game Over", 400, 280);
+					ctx.fillText("You Lose!", 400, 320);
+				}
+		}
+
+		//function to draw circle
+		function drawBullet(x2,y2) 
+		{
+			ctx.beginPath();
+			ctx.rect(x2, y2, 2, 8);
+			ctx.closePath();
+			ctx.fill();
+		}
+		
+		//function to draw circle
+		function drawAlien() 
+		{
+			for (i = 0; i < alienX.length; i++)
+			{
+				if (alienHits[i] < 3)
+				{
+					ctx.fillStyle = "white";
+					ctx.beginPath();
+					ctx.rect(alienX[i], alienY[i] + 4 * pixels[i], 11 * pixels[i], 3 * pixels[i]);
+					ctx.closePath();
+					ctx.fill();
+					ctx.beginPath();
+					ctx.rect(alienX[i] + 1 * pixels[i], alienY[i] + 3 * pixels[i], 9 * pixels[i], 1 * pixels[i]);
+					ctx.closePath();
+					ctx.fill();
+					ctx.beginPath();
+					ctx.rect(alienX[i] + 2 * pixels[i], alienY[i] + 2 * pixels[i], 7 * pixels[i], 1 * pixels[i]);
+					ctx.closePath();
+					ctx.fill();
+					ctx.beginPath();
+					ctx.rect(alienX[i] + 3 * pixels[i], alienY[i] + 1 * pixels[i], 1 * pixels[i], 1 * pixels[i]);
+					ctx.closePath();
+					ctx.fill();
+					ctx.beginPath();
+					ctx.rect(alienX[i] + 2 * pixels[i], alienY[i], 1 * pixels[i], 1 * pixels[i]);
+					ctx.closePath();
+					ctx.fill();
+					ctx.beginPath();
+					ctx.rect(alienX[i] + 7 * pixels[i], alienY[i] + 1 * pixels[i], 1 * pixels[i], 1 * pixels[i]);
+					ctx.closePath();
+					ctx.fill();
+					ctx.beginPath();
+					ctx.rect(alienX[i] + 8 * pixels[i], alienY[i], 1 * pixels[i], 1 * pixels[i]);
+					ctx.closePath();
+					ctx.fill();
+					ctx.beginPath();
+					ctx.rect(alienX[i] + 3 * pixels[i], alienY[i] + 7 * pixels[i], 5 * pixels[i], 1 * pixels[i]);
+					ctx.closePath();
+					ctx.fill();
+					ctx.fillStyle = "black";
+					ctx.beginPath();
+					ctx.rect(alienX[i] + 5 * pixels[i], alienY[i] + 7 * pixels[i], 1 * pixels[i], 1 * pixels[i]);
+					ctx.closePath();
+					ctx.fill();
+					ctx.beginPath();
+					ctx.rect(alienX[i] + 3 * pixels[i], alienY[i] + 6 * pixels[i], 5 * pixels[i], 1 * pixels[i]);
+					ctx.closePath();
+					ctx.fill();
+					ctx.beginPath();
+					ctx.rect(alienX[i] + 1 * pixels[i], alienY[i] + 5 * pixels[i], 1 * pixels[i], 2 * pixels[i]);
+					ctx.closePath();
+					ctx.fill();
+					ctx.beginPath();
+					ctx.rect(alienX[i] + 9 * pixels[i], alienY[i] + 5 * pixels[i], 1 * pixels[i], 2 * pixels[i]);
+					ctx.closePath();
+					ctx.fill();
+					ctx.beginPath();
+					ctx.rect(alienX[i] + 3 * pixels[i], alienY[i] + 3 * pixels[i], 1 * pixels[i], 1 * pixels[i]);
+					ctx.closePath();
+					ctx.fill();
+					ctx.beginPath();
+					ctx.rect(alienX[i] + 7 * pixels[i], alienY[i] + 3 * pixels[i], 1 * pixels[i], 1 * pixels[i]);
+					ctx.closePath();
+					ctx.fill();
+				}
+				else if (alienHits[i] == 3)
+				{
+					explode[i] += 1;
+					if (explode[i] <= 100)
+					{
+						ctx.fillStyle = "white";
+						ctx.beginPath();
+						ctx.rect(alienX[i] - 3, alienY[i] + 9, 6, 3);
+						ctx.closePath();
+						ctx.fill();
+						ctx.beginPath();
+						ctx.rect(alienX[i] - 3, alienY[i] + 18, 3, 3);
+						ctx.closePath();
+						ctx.fill();
+						ctx.beginPath();
+						ctx.rect(alienX[i], alienY[i] + 15, 3, 3);
+						ctx.closePath();
+						ctx.fill();
+						ctx.beginPath();
+						ctx.rect(alienX[i], alienY[i], 3, 3);
+						ctx.closePath();
+						ctx.fill();
+						ctx.beginPath();
+						ctx.rect(alienX[i] + 3, alienY[i] + 3, 3, 3);
+						ctx.closePath();
+						ctx.fill();
+						ctx.beginPath();
+						ctx.rect(alienX[i] + 6, alienY[i] + 6, 3, 3);
+						ctx.closePath();
+						ctx.fill();
+						ctx.beginPath();
+						ctx.rect(alienX[i] + 6, alienY[i] + 18, 3, 6);
+						ctx.closePath();
+						ctx.fill();
+						ctx.beginPath();
+						ctx.rect(alienX[i] + 9, alienY[i] + 15, 3, 3);
+						ctx.closePath();
+						ctx.fill();
+						ctx.beginPath();
+						ctx.rect(alienX[i] + 12, alienY[i] - 3, 3, 6);
+						ctx.closePath();
+						ctx.fill();
+						ctx.beginPath();
+						ctx.rect(alienX[i] + 15, alienY[i] + 21, 3, 6);
+						ctx.closePath();
+						ctx.fill();
+						ctx.beginPath();
+						ctx.rect(alienX[i] + 18, alienY[i] + 6, 3, 3);
+						ctx.closePath();
+						ctx.fill();
+						ctx.beginPath();
+						ctx.rect(alienX[i] + 21, alienY[i], 3, 6);
+						ctx.closePath();
+						ctx.fill();
+						ctx.beginPath();
+						ctx.rect(alienX[i] + 21, alienY[i] + 15, 3, 3);
+						ctx.closePath();
+						ctx.fill();
+						ctx.beginPath();
+						ctx.rect(alienX[i] + 24, alienY[i] + 18, 3, 3);
+						ctx.closePath();
+						ctx.fill();
+						ctx.beginPath();
+						ctx.rect(alienX[i] + 27, alienY[i] + 21, 3, 3);
+						ctx.closePath();
+						ctx.fill();
+						ctx.beginPath();
+						ctx.rect(alienX[i] + 27, alienY[i] + 12, 6, 3);
+						ctx.closePath();
+						ctx.fill();
+						ctx.beginPath();
+						ctx.rect(alienX[i] + 27, alienY[i] + 6, 3, 3);
+						ctx.closePath();
+						ctx.fill();
+						ctx.beginPath();
+						ctx.rect(alienX[i] + 30, alienY[i] + 3, 3, 3);
+						ctx.closePath();
+						ctx.fill();
+					}
+					else if (alienAlive == false)
+					{
+						ctx.fillStyle = "white";
+						ctx.font = "bold 36px sans-serif";
+						ctx.textAlign = "center";
+						ctx.fillText("Game Over", 400, 280);
+						ctx.fillText("You Win!", 400, 320);
+					}
+				}
+			}
+		}
+		
+		//function to be used for clearing the canvas	
+		function rect(x,y,w,h) 
+		{
+			ctx.beginPath();
+			ctx.rect(x,y,w,h);
+			ctx.closePath();
+			ctx.fill();
+			ctx.stroke();
+		}
+
+		function clear() 
+		{
+			ctx.clearRect(0, 0, WIDTH, HEIGHT);
+		}
+
+		function init() 
+		{
+			window.addEventListener('keydown',doKeyDown,true);
+			canvas = document.getElementById("canvas");
+			ctx = canvas.getContext("2d");
+			return1 = setInterval(draw, 10);
+			return2 = setTimeout(alienTimer, 1500);
+			return [return1, return2];
+		}
+
+		function doKeyDown(evt)
+		{
+			//key = evt.which;
+			switch (evt.which) 
+			{
+				case 37:  
+				if (shipx - dx > 0)
+				{
+					shipx -= dx;
+					if(fireOn==false)
+					{
+						bulletX -= dx;
+					}
+				}
+				break;
+				case 39: 
+				if (shipx + dx + 50 < WIDTH)
+				{
+					shipx += dx;
+					if(fireOn==false)
+					{
+						bulletX += dx;
+					}
+				}
+				break;
+				case 32:
+				if(fireOn == false && shipHit == false)
+				{
+					bulletX = shipx + 25;
+					bulletY = shipy;
+					fireOn = true;
+					bulletTimer();
+				}
+				break;
+			}
+		}
+
+		//Create timer function for bullet
+		function bulletTimer()
+		{
+			if(fireOn == true)
+			{
+				timer = window.setInterval("moveBullet()",20); 
+			}
+			else if(fireOn == false)
+			{
+				window.clearInterval(timer);
+			}
+		}
+		
+		//Create timer function for alien
+		function alienTimer()
+		{
+			if(alienAlive == true && shipHit == false)
+			{
+				aTimer = window.setInterval("moveAlien()", alienSpeed); 
+			}
+			else if (shipHit == false)
+			{
+				window.clearInterval(aTimer);
+				aTimer = window.setInterval("moveAlien()", alienSpeed);
+			}
+			else if (shipHit == true)
+			{
+				window.clearInterval(aTimer);
+			}
+		}
+		
+		//this shoots the bullet upwards
+		function moveBullet()
+		{
+			bulletY -= 10;
+			//check when off screen
+			if(bulletY < 0)
+			{
+				fireOn = false;
+				bulletTimer();
+				bulletX = shipx + 25;
+				bulletY = shipy;
+			}
+			
+			for (i = 0; i < alienX.length; i++)
+			{
+				if (bulletX > alienX[i] && bulletX < alienX[i] + 11 * pixels[i] && bulletY > alienY[i] && bulletY < alienY[i] + 8 * pixels[i] && explode[i] == 0)
+				{
+					fireOn = false;
+					bulletTimer();
+					bulletX = shipx + 25;
+					bulletY = shipy;
+					pixels[i] -= 1;
+					alienHits[i] += 1;
+					if (alienHits[0] == 3 && alienHits[1] == 3 && alienHits[2] == 3 && alienHits[3] == 3 && alienHits[4] == 3)
+					{
+						alienAlive = false;
+					}
+					alienTimer();
+				}
+			}
+		}
+		
+		//this moves the alien
+		function moveAlien()
+		{
+			for (i = 0; i < alienX.length; i++)
+			{
+				if (alienX[i] < 741 && alienX[i] > 15 && explode[i] == 0)
+				{
+					alienX[i] += dxAlien;
+				}
+				else if (explode[i] == 0)
+				{
+					dxAlien *= -1;
+					alienX[i] += dxAlien;
+					for (m = 0; m < alienX.length; m++)
+					{
+						if (explode[m] == 0)
+						{
+							if (m != i)
+							{
+								alienX[m] += dxAlien;
+							}
+							alienY[m] += dyAlien;
+						}
+					}
+				}
+				
+				
+				var rect1 = {x: alienX[i], y: alienY[i], width: 11 * pixels[i], height: 8 * pixels[i]}
+				var rect2 = {x: shipx, y: shipy - 16, width: 52, height: 28}
+
+				if (rect1.x < rect2.x + rect2.width &&
+					rect1.x + rect1.width > rect2.x &&
+					rect1.y < rect2.y + rect2.height &&
+					rect1.height + rect1.y > rect2.y &&
+					alienHits[i] < 3)
+				{
+					// collision detected
+					shipHit = true;
+					alienTimer();
+				}
+			}
+		}
+
+		function draw() 
+		{
+			clear();
+			//canvas background color
+			ctx.fillStyle = "black";
+			//outline of canvas
+			ctx.strokeStyle = "white";
+			rect(0,0,WIDTH,HEIGHT);
+			//draw bullet
+			ctx.fillStyle = "white";
+			drawBullet(bulletX,bulletY);
+			//draw ship
+			ctx.fillStyle = "#00EE00";
+			ship(shipx, shipy);
+			//draw alien
+			ctx.fillStyle = "white";
+			drawAlien();
+		}
+
+	</script>
+</head>
+<!--<body onload="init()" onkeypress="doKeyDown(event)"> -->
+<body onload="init()">
+	<section>
+	<center>
+		<div>
+			<h1>Space Invaders</h1>
+			<canvas id="canvas" width="800" height="600">
+			This text is displayed if your browser does not support HTML5 Canvas.
+			</canvas>
+		</div>
+	</center>
+	</section>
+</body>
+</html>

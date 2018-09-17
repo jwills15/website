@@ -1,0 +1,82 @@
+body{text-align: center;
+		font-family: arial;
+		font-size: 20px;
+		color: aqua;
+		background-image: url("background.jpg");}
+
+.pic{height: 200px;}
+		
+#P1{position: absolute;
+		top: 20px;
+		left: 20px;
+		z-index: 15;}
+
+#P2{position: absolute;
+		top: 20px;
+		left: 850px;
+		z-index: 14;}
+		
+#P3{position: absolute;
+		top: 90px;
+		left: 250px;
+		z-index: 13;}
+		
+#P4{position: absolute;
+		top: 150px;
+		left: 525px;
+		z-index: 12;}
+		
+#P5{position: absolute;
+		top: 250px;
+		left: 50px;
+		z-index: 11;}
+		
+#P6{position: absolute;
+		top: 275px;
+		left: 200px;
+		z-index: 10;}
+		
+#P7{position: absolute;
+		top: 495px;
+		left: 10px;
+		z-index: 9;}
+		
+#P8{position: absolute;
+		top: 325px;
+		left: 500px;
+		z-index: 8;}
+		
+#P9{position: absolute;
+		top: 200px;
+		left: 780px;
+		z-index: 7;}
+		
+#P10{position: absolute;
+		top: 450px;
+		left: 300px;
+		z-index: 6;}
+		
+#P11{position: absolute;
+		top: 550px;
+		left: 450px;
+		z-index: 5;}
+		
+#P12{position: absolute;
+		top: 375px;
+		left: 750px;
+		z-index: 4;}
+		
+#P13{position: absolute;
+		top: 375px;
+		left: 975px;
+		z-index: 3;}
+		
+#P14{position: absolute;
+		top: 525px;
+		left: 650px;
+		z-index: 2;}
+		
+#P15{position: absolute;
+		top: 550px;
+		left: 900px;
+		z-index: 1;}
